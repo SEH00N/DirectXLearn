@@ -17,6 +17,7 @@ public:
 
 public:
 	inline ComPtr<ID3D12CommandQueue> GetCommandQueue() { return cmdQueue; }
+	inline ComPtr<ID3D12GraphicsCommandList> GetCommandList() { return cmdList; }
 
 private:
 	ComPtr<ID3D12CommandQueue> cmdQueue;
