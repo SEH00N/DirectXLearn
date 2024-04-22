@@ -10,10 +10,10 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="소스 파일\Game">
-      <UniqueIdentifier>{f2f16756-1207-4e1f-b1a0-1944c803e586}</UniqueIdentifier>
+      <UniqueIdentifier>{28a69e59-314c-4f80-8cf7-a545bc82d0b6}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Utils">
-      <UniqueIdentifier>{8b2d6e42-a1f3-40c9-bcee-bf83ae16e4e1}</UniqueIdentifier>
+      <UniqueIdentifier>{d3ef61de-7487-4c60-8f0b-b4561db76838}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

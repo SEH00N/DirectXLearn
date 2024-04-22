@@ -1,8 +1,6 @@
 #include "pch.h"
 #include "Game.h"
 #include "Engine.h"
-#include "Mesh.h"
-#include "Shader.h"
 
 shared_ptr<Mesh> mesh = make_shared<Mesh>();
 shared_ptr<Shader> shader = make_shared<Shader>();
@@ -11,31 +9,52 @@ void Game::Init(const WindowInfo& wInfo)
 {
 	GEngine->Init(wInfo);
 
-	vector<Vertex> verticies(3);
+	// »ï°¢Çü ¶ç¿ì±â Å×½ºÆ® ÄÚµå
+	vector<Vertex> vec(3);
 
-	verticies[0].pos = Vec3(-1.0f, -0.707f, 0);
-	verticies[0].color = Vec4(1, 1, 1, 1);
+	vec[0].pos = Vec3(0.f, 0.5f, 0.5f);
+	vec[0].color = Vec4(1.f, 0.f, 0.f, 1.f);
 
-	verticies[1].pos = Vec3(0, 0.707f, 0);
-	verticies[1].color = Vec4(1, 1, 1, 1);
+	vec[1].pos = Vec3(0.5f, -0.5f, 0.5f);
+	vec[1].color = Vec4(0.f, 1.f, 0.f, 1.f);
 
-	verticies[2].pos = Vec3(1.0f, -0.707f, 0);
-	verticies[2].color = Vec4(1, 1, 1, 1);
+	vec[2].pos = Vec3(-0.5f, -0.5f, 0.5f);
+	vec[2].color = Vec4(0.f, 0.f, 1.f, 1.f);
 
-	mesh->Init(verticies);
-	shader->Init(TEXT("..\\Resources\\Shader\\default.hlsli"));
+	mesh->Init(vec);
+
+	shader->Init(L"..\\Resources\\Shader\\default.hlsli");
 
 	GEngine->GetCmdQueue()->WaitSync();
 }
 
 void Game::Update()
 {
-	//GEngine->Render();
+	// GEngine->Render();
 
+	
 	GEngine->RenderBegin();
 
 	shader->Update();
-	mesh->Render();
+
+	/*mesh->Render();*/
+
+	// »ï°¢Çü 1
+	{
+		Transform t;
+		t.offset = Vec4(0.75f, 0.f, 0.f, 0.f);
+		mesh->SetTransform(t);
+		mesh->Render();
+	}
+
+	// »ï°¢Çü 2
+	{
+		Transform t;
+		t.offset = Vec4(0.f, 0.75f, 0.f, 0.f);
+		mesh->SetTransform(t);
+		mesh->Render();
+	}
+
 
 	GEngine->RenderEnd();
 }

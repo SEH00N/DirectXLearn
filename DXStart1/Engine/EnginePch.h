@@ -11,7 +11,7 @@
 #include <map>
 using namespace std;
 
-#include "d3dx12.h"        // 마소 공식 깃헙에서 다운받아야 함(or 준비된 파일을 전달)
+#include "d3dx12.h"		// 마소 공식 깃헙에서 다운받아야 함(or 준비된 파일을 전달)
 #include <d3d12.h>
 #include <wrl.h>
 #include <d3dcompiler.h>
@@ -22,7 +22,7 @@ using namespace std;
 using namespace DirectX;
 using namespace DirectX::PackedVector;
 using namespace Microsoft::WRL;
- 
+
 // 각종 lib
 #pragma comment(lib, "d3d12")
 #pragma comment(lib, "dxgi")
@@ -43,29 +43,49 @@ using Vec3 = XMFLOAT3;
 using Vec4 = XMFLOAT4;
 using Matrix = XMMATRIX;
 
+enum class CBV_REGISTER
+{
+	b0,
+	b1,
+	b2,
+	b3,
+	b4,
+
+	END
+};
+
 enum
 {
-    SWAP_CHAIN_BUFFER_COUNT = 2,
+	SWAP_CHAIN_BUFFER_COUNT = 2,
+	CBV_REGISTER_COUNT = CBV_REGISTER::END,
+	REGISTER_COUNT = CBV_REGISTER::END,
 };
+
 
 struct WindowInfo
 {
-    HWND hWnd;        // 출력 윈도우
-    int32 width;    // 너비
-    int32 height;    // 높이
-    bool windowed;    // 창모드인지 전체화면인지
+	HWND hwnd;		// 출력 윈도우
+	int32 width;	// 너비
+	int32 height;	// 높이
+	bool windowed;	// 창모드인지 전체화면인지
 };
 
 struct Vertex
 {
-    Vec3 pos;
-    Vec4 color;
+	Vec3 pos;		// 위치
+	Vec4 color;		// 색상
 };
 
-#define DEVICE      GEngine->GetDevice()->GetDevice()
-#define CMD_LIST    GEngine->GetCmdQueue()->GetCommandList()
-#define ROOT_SIGNATURE    GEngine->GetRootSignature()->GetSignature()
+struct Transform
+{
+	Vec4 offset;
+};
+
+#define DEVICE			GEngine->GetDevice()->GetDevice()
+#define CMD_LIST		GEngine->GetCmdQueue()->GetCmdList()
+#define ROOT_SIGNATURE	GEngine->GetRootSignature()->GetSignature()
 
 extern unique_ptr<class Engine> GEngine;
+
 
 //void HelloEngine();
