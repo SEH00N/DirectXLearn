@@ -80,7 +80,7 @@ void CommandQueue::RenderBegin(const D3D12_VIEWPORT* vp, const D3D12_RECT* rect)
 	GEngine->GetTableDescHeap()->Clear();
 
 	ID3D12DescriptorHeap* descHeap = GEngine->GetTableDescHeap()->GetDescriptorHeap().Get();
-	_cmdList->SetDescriptorHeaps(1, &descHeap);
+	_cmdList->SetDescriptorHeaps(1, &descHeap);	// 어떤 힙을 사용할건지 지정해준다
 
 	_cmdList->ResourceBarrier(1, &barrier);
 

@@ -25,6 +25,7 @@ void ConstantBuffer::Init(uint32 size, uint32 count)
 	_elementCount = count;
 
 	CreateBuffer();
+	CreateView();
 }
 
 void ConstantBuffer::CreateBuffer()
@@ -74,7 +75,7 @@ void ConstantBuffer::Clear()
 	_currentIndex = 0;
 }
 
-// CBV 방식
+// CBV 방식 PushData
 //void ConstantBuffer::PushData(int32 rootParamIndex, void* buffer, uint32 size)
 //{
 //	// 조건이 만족하지 않으면 크래시를 내는 디버깅 코드
@@ -88,7 +89,7 @@ void ConstantBuffer::Clear()
 //	_currentIndex++;
 //}
 
-// 테이블 방식
+// 테이블 방식 PushData
 D3D12_CPU_DESCRIPTOR_HANDLE ConstantBuffer::PushData(int32 rootParamIndex, void* buffer, uint32 size)
 {
 	assert(_currentIndex < _elementSize);
@@ -114,6 +115,5 @@ D3D12_CPU_DESCRIPTOR_HANDLE ConstantBuffer::GetCpuHandle(uint32 index)
 	//D3D12_CPU_DESCRIPTOR_HANDLE handle = _cpuHandleBegin;
 	//handle.ptr += index * _handleIncrementSize;
 	//return handle;
-
 	return CD3DX12_CPU_DESCRIPTOR_HANDLE(_cpuHandleBegin, index * _handleIncrementSize);
 }

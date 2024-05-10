@@ -10,18 +10,23 @@ void Game::Init(const WindowInfo& wInfo)
 	GEngine->Init(wInfo);
 
 	// »ï°¢Çü ¶ç¿ì±â Å×½ºÆ® ÄÚµå
-	vector<Vertex> vec(3);
+	{
+		vector<Vertex> vec(4);
 
-	vec[0].pos = Vec3(0.f, 0.5f, 0.5f);
-	vec[0].color = Vec4(1.f, 0.f, 0.f, 1.f);
+		vec[0].pos = Vec3(-0.5f, -0.5f, 0.5f);
+		vec[0].color = Vec4(1.f, 0.f, 0.f, 1.f);
 
-	vec[1].pos = Vec3(0.5f, -0.5f, 0.5f);
-	vec[1].color = Vec4(0.f, 1.f, 0.f, 1.f);
+		vec[1].pos = Vec3(-0.5f, 0.5f, 0.5f);
+		vec[1].color = Vec4(0.f, 1.f, 0.f, 1.f);
 
-	vec[2].pos = Vec3(-0.5f, -0.5f, 0.5f);
-	vec[2].color = Vec4(0.f, 0.f, 1.f, 1.f);
+		vec[2].pos = Vec3(0.5f, -0.5f, 0.5f);
+		vec[2].color = Vec4(0.f, 0.f, 1.f, 1.f);
+		
+		vec[3].pos = Vec3(0.5f, 0.5f, 0.5f);
+		vec[3].color = Vec4(1.f, 0.f, 0.f, 1.f);
 
-	mesh->Init(vec);
+		mesh->Init(vec, {0, 1, 2, 2, 1, 3});
+	}
 
 	shader->Init(L"..\\Resources\\Shader\\default.hlsli");
 
@@ -39,22 +44,11 @@ void Game::Update()
 
 	/*mesh->Render();*/
 
-	// »ï°¢Çü 1
 	{
 		Transform t;
-		t.offset = Vec4(0.75f, 0.f, 0.f, 0.f);
-		mesh->SetTransform(t);
+		t.offset = Vec4(0.0f, 0.0f, 0.0f, 0.0f);
 		mesh->Render();
 	}
-
-	// »ï°¢Çü 2
-	{
-		Transform t;
-		t.offset = Vec4(0.f, 0.75f, 0.f, 0.f);
-		mesh->SetTransform(t);
-		mesh->Render();
-	}
-
 
 	GEngine->RenderEnd();
 }
